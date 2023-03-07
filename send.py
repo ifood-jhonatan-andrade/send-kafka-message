@@ -71,17 +71,16 @@ class KafkaClient:
         producer.flush()
 
 
-def send(topic, path_context, message, key, schema):
-    with open(path_context, "r") as f:
-        config = yaml.safe_load(f)
+def send(topic, context, message, key, schema):
+
     client = KafkaClient(
-        KAFKA_SCHEMA_REGISTRY_URL=config["KAFKA_SCHEMA_REGISTRY_URL"],
-        KAFKA_SCHEMA_REGISTRY_API_KEY=config["KAFKA_SCHEMA_REGISTRY_API_KEY"],
-        KAFKA_SCHEMA_REGISTRY_API_SECRET=config["KAFKA_SCHEMA_REGISTRY_API_SECRET"],
-        KAFKA_API_KEY=config["KAFKA_API_KEY"],
-        KAFKA_API_SECRET=config["KAFKA_API_SECRET"],
-        KAFKA_BOOTSTRAP_SERVER=config["KAFKA_BOOTSTRAP_SERVER"],
-        KAFKA_AUTH_MODULE=config["KAFKA_AUTH_MODULE"],
+        KAFKA_SCHEMA_REGISTRY_URL=context["KAFKA_SCHEMA_REGISTRY_URL"],
+        KAFKA_SCHEMA_REGISTRY_API_KEY=context["KAFKA_SCHEMA_REGISTRY_API_KEY"],
+        KAFKA_SCHEMA_REGISTRY_API_SECRET=context["KAFKA_SCHEMA_REGISTRY_API_SECRET"],
+        KAFKA_API_KEY=context["KAFKA_API_KEY"],
+        KAFKA_API_SECRET=context["KAFKA_API_SECRET"],
+        KAFKA_BOOTSTRAP_SERVER=context["KAFKA_BOOTSTRAP_SERVER"],
+        KAFKA_AUTH_MODULE=context["KAFKA_AUTH_MODULE"],
         KAFKA_TOPIC=topic,
         KEY_MESSAGE=key
     )
