@@ -1,11 +1,11 @@
-Instalar dependencias
+Install dependencies
 
 ```shell
 sh install.sh
 ```
 
 
-Enviar Mensagem e Salva Alias
+Send message and save alias
 
 ```shell
 python main.py publish \
@@ -19,13 +19,13 @@ python main.py publish \
 
 ```
 
-Enviar a mesma mensagem
+Send the same message
 
 ````shell
 python main.py publish --alias send-message-topic
 ````
 
-Enviar a mesma mensagem editando apenas o conteúdo do payload
+Send the same message by editing only the payload content
 ````shell
 python main.py publish --alias send-message-topic \
  --path-message message.json \
