@@ -7,7 +7,7 @@ sh install.sh
 ## Create Context
 
 ```shell
-python main.py context --context context01 \
+python3 main.py context --context context01 \
 --schema-registry-url https://localhost:9093 \
 --schema-registry-key <SCHEMA_REGISTRY_KEY> \
 --schema-registry-secret <SCHEMA_REGISTRY_SECRET> \
@@ -24,10 +24,10 @@ python main.py context --context context01 \
 2. Create a file called `schema.avsc` and add the schema avro
 3. Run this command
 ```shell
-python main.py publish \
+python3 main.py publish \
  --context context01 \
  --topic <TOPIC> \
- --key <KEY> \
+ --key <PAYLOAD_PROPERTY> \
  --path-schema schema.avsc \
  --path-message message.json \
  --alias send-message-topic \
@@ -39,12 +39,12 @@ python main.py publish \
 You can now create alias for your submissions and send them repeatedly
 
 ````shell
-python main.py publish --alias send-message-topic
+python3 main.py publish --alias send-message-topic
 ````
 
 Send the same message by editing only the payload content
 ````shell
-python main.py publish --alias send-message-topic \
+python3 main.py publish --alias send-message-topic \
  --path-message message.json \
  --save
 

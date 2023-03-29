@@ -27,6 +27,7 @@ def publish():
         else:
             message_json_update = alias_schema["message"]
 
+        print(f"Send Message to topic {alias['topic']}...")
         send(
             alias["topic"],
             alias_context,
@@ -54,7 +55,7 @@ def publish():
 
         alias_context = get_contexts()[context_args]
 
-        print("Send Message...")
+        print(f"Send Message to topic {topic_args}...")
         send(topic_args, alias_context, message_json, key_args, schema)
         print("Message Sent Successfully")
         if save_args:

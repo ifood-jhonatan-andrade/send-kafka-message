@@ -1,8 +1,8 @@
 # shellcheck disable=SC2164
 cd venv
 
-pip install confluent-kafka
-pip install pyyaml
-pip install fastavro
-pip install requests
-pip install argparse
+pip3 install confluent-kafka
+pip3 install pyyaml
+pip3 install fastavro
+pip3 install requests
+pip3 install argparse
