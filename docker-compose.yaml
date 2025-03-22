@@ -54,7 +54,7 @@ services:
   kafka-producer:
     build: .
     volumes:
-      - ./configs:/app/configs
+      - ./db:/app/db
       - ./collection:/app/collection
     depends_on:
       - kafka

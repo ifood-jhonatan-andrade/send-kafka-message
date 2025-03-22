@@ -2,7 +2,7 @@ import argparse
 import json
 
 from send import send
-from alias import save, get, get_schema, get_contexts, save_context
+from repository import save, get, get_schema, get_contexts, save_context, initialize_db
 
 
 def publish():
@@ -77,6 +77,7 @@ def create_context():
 
 
 if __name__ == '__main__':
+    initialize_db()
     parser = argparse.ArgumentParser()
     parser.add_argument("action", help="context variable")
 
