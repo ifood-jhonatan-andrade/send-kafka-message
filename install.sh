@@ -6,3 +6,7 @@ pip3 install pyyaml
 pip3 install fastavro
 pip3 install requests
 pip3 install argparse
+pip3 install httpx
+pip3 install attrs
+pip3 install cachetools
+pip3 install authlib

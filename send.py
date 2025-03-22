@@ -2,9 +2,6 @@ from confluent_kafka import SerializingProducer
 from confluent_kafka.serialization import StringSerializer
 from confluent_kafka.schema_registry import SchemaRegistryClient
 from confluent_kafka.schema_registry.avro import AvroSerializer
-import json
-import yaml
-import argparse
 
 
 class KafkaMessage:
@@ -50,21 +47,32 @@ class KafkaClient:
 
     def execute(self, msg, avro):
         schema_registry_conf = {
-            'url': self.KAFKA_SCHEMA_REGISTRY_URL,
-            'basic.auth.user.info': self.KAFKA_SCHEMA_REGISTRY_API_KEY + ':' + self.KAFKA_SCHEMA_REGISTRY_API_SECRET,
+            'url': self.KAFKA_SCHEMA_REGISTRY_URL
         }
+
+        if self.KAFKA_API_KEY == "null" or self.KAFKA_API_SECRET == "null":
+            schema_registry_conf['basic.auth.user.info'] = (
+                    self.KAFKA_SCHEMA_REGISTRY_API_KEY + ':' + self.KAFKA_SCHEMA_REGISTRY_API_SECRET)
+
         schema_registry_client = SchemaRegistryClient(schema_registry_conf)
         avro_serializer = AvroSerializer(schema_registry_client, avro, KafkaMessage.toDict)
+
         producer_config = {
             'bootstrap.servers': self.KAFKA_BOOTSTRAP_SERVER,
             'key.serializer': StringSerializer('utf_8'),
             'value.serializer': avro_serializer,
-            'client.id': 'datasheet-script',
-            'security.protocol': 'SASL_SSL',
-            'sasl.mechanism': self.KAFKA_AUTH_MODULE,
-            'sasl.username': self.KAFKA_API_KEY,
-            'sasl.password': self.KAFKA_API_SECRET,
+            'client.id': 'datasheet-script'
         }
+
+        if self.KAFKA_API_KEY is None or self.KAFKA_API_SECRET is None:
+            producer_config['security.protocol'] = 'PLAINTEXT'
+        else:
+            producer_config['security.protocol'] = 'SASL_SSL'
+            producer_config['sasl.mechanisms'] = self.KAFKA_AUTH_MODULE
+            producer_config['sasl.username'] = self.KAFKA_API_KEY
+            producer_config['sasl.password'] = self.KAFKA_API_SECRET
+
+
         producer = SerializingProducer(producer_config)
 
         producer.produce(topic=self.KAFKA_TOPIC, key=msg.__getattribute__(self.KEY_MESSAGE), value=msg)

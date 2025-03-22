@@ -1,0 +1,418 @@
+{
+    "type": "record",
+    "name": "MetadataIngestorMessage",
+    "namespace": "com.ifood.metadatainferenceplatform.model.kafka",
+    "fields": [
+        {
+            "name": "eventType",
+            "type": "string"
+        },
+        {
+            "name": "ownerId",
+            "type": {
+                "type": "string",
+                "logicalType": "uuid"
+            }
+        },
+        {
+            "name": "groupId",
+            "type": {
+                "type": "string",
+                "logicalType": "uuid"
+            }
+        },
+        {
+            "name": "catalogId",
+            "type": [
+                "null",
+                {
+                    "type": "string",
+                    "logicalType": "uuid"
+                }
+            ]
+        },
+        {
+            "name": "categoryId",
+            "type": [
+                "null",
+                {
+                    "type": "string",
+                    "logicalType": "uuid"
+                }
+            ]
+        },
+        {
+            "name": "itemId",
+            "type": {
+                "type": "string",
+                "logicalType": "uuid"
+            }
+        },
+        {
+            "name": "itemProductId",
+            "type": [
+                "null",
+                {
+                    "type": "string",
+                    "logicalType": "uuid"
+                }
+            ]
+        },
+        {
+            "name": "merchantType",
+            "type": [
+                "null",
+                "string"
+            ],
+            "default": null
+        },
+        {
+            "name": "modelClassifications",
+            "type": {
+                "type": "array",
+                "items": {
+                    "type": "record",
+                    "name": "ModelClassification",
+                    "fields": [
+                        {
+                            "name": "modelType",
+                            "type": "string"
+                        },
+                        {
+                            "name": "value",
+                            "type": [
+                                "string",
+                                {
+                                    "type": "array",
+                                    "items": "string",
+                                    "default": []
+                                }
+                            ]
+                        },
+                        {
+                            "name": "key",
+                            "type": [
+                                "null",
+                                "string"
+                            ],
+                            "default": null
+                        },
+                        {
+                            "name": "score",
+                            "type": "double"
+                        },
+                        {
+                            "name": "trustClassification",
+                            "type": [
+                                "null",
+                                "boolean"
+                            ],
+                            "default": null
+                        },
+                        {
+                            "name": "primitiveValueType",
+                            "type": {
+                                "type": "enum",
+                                "name": "PrimitiveValueTypeEnum",
+                                "symbols": [
+                                    "integer",
+                                    "boolean",
+                                    "double",
+                                    "string",
+                                    "array"
+                                ],
+                                "default": "string"
+                            },
+                            "default": "string"
+                        },
+                        {
+                            "name": "optionGroupId",
+                            "type": [
+                                "null",
+                                {
+                                    "type": "string",
+                                    "logicalType": "uuid"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "optionId",
+                            "type": [
+                                "null",
+                                {
+                                    "type": "string",
+                                    "logicalType": "uuid"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "name": "itemBaseInfo",
+            "type": [
+                "null",
+                {
+                    "type": "record",
+                    "name": "ItemBaseInfo",
+                    "fields": [
+                        {
+                            "name": "itemId",
+                            "type": {
+                                "type": "string",
+                                "logicalType": "uuid"
+                            }
+                        },
+                        {
+                            "name": "ownerId",
+                            "type": {
+                                "type": "string",
+                                "logicalType": "uuid"
+                            }
+                        },
+                        {
+                            "name": "groupId",
+                            "type": {
+                                "type": "string",
+                                "logicalType": "uuid"
+                            }
+                        },
+                        {
+                            "name": "catalogId",
+                            "type": {
+                                "type": "string",
+                                "logicalType": "uuid"
+                            }
+                        },
+                        {
+                            "name": "categoryId",
+                            "type": {
+                                "type": "string",
+                                "logicalType": "uuid"
+                            }
+                        },
+                        {
+                            "name": "productId",
+                            "type": {
+                                "type": "string",
+                                "logicalType": "uuid"
+                            }
+                        },
+                        {
+                            "name": "itemStatus",
+                            "type": "string"
+                        },
+                        {
+                            "name": "categoryName",
+                            "type": "string"
+                        },
+                        {
+                            "name": "itemEan",
+                            "type": [
+                                "null",
+                                "string"
+                            ],
+                            "default": null
+                        },
+                        {
+                            "name": "itemName",
+                            "type": "string"
+                        },
+                        {
+                            "name": "itemDescription",
+                            "type": [
+                                "null",
+                                "string"
+                            ],
+                            "default": null
+                        },
+                        {
+                            "name": "itemType",
+                            "type": "string"
+                        },
+                        {
+                            "name": "itemPrice",
+                            "type": "double"
+                        },
+                        {
+                            "name": "itemMinSalePrice",
+                            "type": [
+                                "null",
+                                "double"
+                            ],
+                            "default": null
+                        },
+                        {
+                            "name": "itemExternalCode",
+                            "type": [
+                                "null",
+                                "string"
+                            ],
+                            "default": null
+                        },
+                        {
+                            "name": "itemIsSellable",
+                            "type": "boolean"
+                        },
+                        {
+                            "name": "itemAdditionalInfo",
+                            "type": [
+                                "null",
+                                "string"
+                            ],
+                            "default": null
+                        },
+                        {
+                            "name": "segmentation",
+                            "type": [
+                                "null",
+                                "string"
+                            ],
+                            "default": null
+                        },
+                        {
+                            "name": "itemLogoUrls",
+                            "type": [
+                                "null",
+                                {
+                                    "type": "array",
+                                    "items": "string",
+                                    "default": []
+                                }
+                            ],
+                            "default": null
+                        },
+                        {
+                            "name": "itemGeneralTags",
+                            "type": [
+                                "null",
+                                {
+                                    "type": "array",
+                                    "items": "string",
+                                    "default": []
+                                }
+                            ],
+                            "default": null
+                        },
+                        {
+                            "name": "itemSalesRestrictions",
+                            "type": [
+                                "null",
+                                {
+                                    "type": "array",
+                                    "items": "string",
+                                    "default": []
+                                }
+                            ],
+                            "default": null
+                        },
+                        {
+                            "name": "itemAisles",
+                            "type": [
+                                "null",
+                                {
+                                    "type": "array",
+                                    "items": "string",
+                                    "default": []
+                                }
+                            ],
+                            "default": null
+                        },
+                        {
+                            "name": "modifiedAt",
+                            "type": [
+                                "null",
+                                {
+                                    "type": "long",
+                                    "logicalType": "timestamp-millis"
+                                }
+                            ],
+                            "default": null
+                        }
+                    ]
+                }
+            ],
+            "default": null
+        },
+        {
+            "name": "geoMetadata",
+            "type": [
+                "null",
+                {
+                    "type": "record",
+                    "name": "ModelGeoMetadata",
+                    "fields": [
+                        {
+                            "name": "geoScore",
+                            "type": [
+                                "null",
+                                {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "record",
+                                        "name": "ModelGeoScore",
+                                        "fields": [
+                                            {
+                                                "name": "h3",
+                                                "type": "string"
+                                            },
+                                            {
+                                                "name": "score",
+                                                "type": "double"
+                                            },
+                                            {
+                                                "name": "scoreVariant",
+                                                "type": [
+                                                    "null",
+                                                    "double"
+                                                ],
+                                                "default": null
+                                            }
+                                        ]
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "default": null
+        },
+        {
+            "name": "triggeredBy",
+            "type": [
+                "null",
+                "string"
+            ],
+            "default": null
+        },
+        {
+            "name": "modifiedAt",
+            "type": [
+                "null",
+                {
+                    "type": "long",
+                    "logicalType": "timestamp-millis"
+                }
+            ],
+            "default": null
+        },
+        {
+            "name": "resync",
+            "type": [
+                "null",
+                "boolean"
+            ],
+            "default": null
+        },
+        {
+            "name": "destination",
+            "type": [
+                "null",
+                "string"
+            ],
+            "default": null
+        }
+    ]
+}

@@ -1,0 +1,5 @@
+send-message-topic:
+  alias: send-message-topic
+  context: context01
+  key: itemId
+  topic: catalog.catalog-products-ingestor-average
